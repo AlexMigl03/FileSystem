@@ -35,3 +35,8 @@ void stampaElencoFile(directory);
 void stampaElencoCartelle(directory);
 
 //- F6. Decidere autonomamente una funzionalità da implementare in questo contesto (e descriverla).
+
+
+
+
+void printAllPaths(filesystem);

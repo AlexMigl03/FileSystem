@@ -108,7 +108,7 @@ void stampaElencoFile(directory d) {
     file f = d->fileList;
     if(d->numFiles == 0)
     {
-        printf("\nNessuna cartella trovata");
+        printf("\nNessun file trovato");
     }else{
         while(f != NULL){
             printf("\n%s [%s]", f->nome, f->content);
@@ -144,4 +144,42 @@ void printFilePath(file f){
     directory d = f->parent;
     recursiveSearch(d);
     printf("/%s/%s", f->parent, f->nome);
+}
+
+void printDirPath(directory d){;
+    recursiveSearch(d);
+    printf("/%s", d->nome);
+}
+
+void verificaPresenzaFile(directory dP){
+    if(dP->numFiles != 0)
+    {
+        file f1 = dP->fileList;
+
+        while(f1 != NULL){
+            printf("\n");
+            printFilePath(f1);
+            f1 = f1->succ;
+        }
+    }
+    return;
+}
+
+void printAllPaths(filesystem fs){
+    directory dP = fs->root;
+    printf("\nStampa dei percorsi di tutti i file: ");
+    while(dP != NULL)
+    {
+        verificaPresenzaFile(dP);
+        if(dP->numDirs!=0)
+        {
+            directory dP1 = dP->dirList;
+            while(dP1 != NULL){
+                //printf("\nStampa dei percorsi di tutti i file: ");
+                verificaPresenzaFile(dP1);
+                dP1 = dP1->succ;
+            }
+        }
+        dP = dP->dirList;
+    }
 }
